@@ -1,0 +1,81 @@
+@use '../utilities/mixins' as *;
+@use '../base/variables' as *;
+
+footer {
+    @include flex-column($justify-content: center, $align-items: center);
+    background-color: $secondary-colour;
+    padding: 1rem;
+    color: $text-color;
+    font-size: 1rem;
+    font-weight: 300;
+
+    .footerContent {
+        @include flex-column(center, center, 1rem);
+
+        .footerSocials {
+            @include flex-row-wrap(center, center);
+            display: flex;
+
+            a {
+                width: 32px;
+                margin: 0.5rem;
+            }
+
+            svg {
+                font-size: 1.5rem;
+                color: $accent-colour;
+            }
+        
+        }
+
+        .footerLinks {
+            @include flex-row($gap: 3rem);
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+            }
+
+            .footerNav {
+                @include flex-column;
+                gap: 0.5rem;
+            }
+
+            .footerCategory {
+                @include flex-column;
+                gap: 0.5rem;
+            }
+        }
+
+        .footerCopyright {
+            font-size: 12px;
+        }
+    }
+    
+    hr {
+        color: $accent-colour;
+        width: 245px;
+        margin: 3rem 0 1rem 0;
+    }
+
+// Tablet (800px)
+    @include mq($tablet-width) {
+        .footerContent {
+            @include flex-row(flex-start, flex-start, 4rem);
+
+            .footerSocials {
+                display: flex;
+                padding-top: 1rem;
+            }
+        }
+
+        .footerLinks {
+            @include flex-row(center, flex-start, 4rem);
+            padding: 0;
+        }
+    }
+
+    hr {
+        width: 600px;
+    }
+}
