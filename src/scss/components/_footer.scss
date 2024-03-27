@@ -8,4 +8,45 @@ footer {
     color: $text-color;
     font-size: 1rem;
     font-weight: 300;
+
+    .footerContent {
+        @include flex-column(center, center, 1rem);
+
+        .footerLogoSocials {
+            @include flex-column(center, center);
+            flex-wrap: wrap;
+
+            .footerSocials {
+                display: flex;
+
+                a {
+                    width: 32px;
+                    margin: 0.5rem;
+                }
+            }
+        }
+
+        .footerLinks {
+            @include flex-row($gap: 3rem);
+
+            a {
+                color: $text-color;
+                text-decoration: none;
+            }
+
+            .footerNav {
+                @include flex-column;
+                gap: 0.5rem;
+            }
+
+            .footerCategory {
+                @include flex-column;
+                gap: 0.5rem;
+            }
+        }
+
+        .footerCopyright {
+            font-size: 12px;
+        }
+    }
 }

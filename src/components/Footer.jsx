@@ -35,8 +35,9 @@ const Footer = () => {
                         <Link to="/upcoming">Upcoming</Link>
                     </div>
                 </div>
+
+                <p className="footerCopyright">{new Date().getFullYear()} Poppin' Corn. All rights reserved.</p>
             </div>
-            <p className="footerCopyright">{new Date().getFullYear()} Poppin' Corn. All rights reserved.</p>
         </footer>
     )
 }
