@@ -1,0 +1,34 @@
+// Make flex row container
+@mixin flex-row($justify-content: flex-start, $align-items: flex-start, $gap: 0) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+// Make flex row wrap container
+@mixin flex-row-wrap($justify-content: flex-start, $align-items: flex-start, $gap: 0) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+// Make flex column container
+@mixin flex-column($justify-content: flex-start, $align-items: flex-start, $gap: 0) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $justify-content;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+// Media Query
+@mixin mq($w) {
+    @media (min-width: $w) {
+        @content;
+    }
+}

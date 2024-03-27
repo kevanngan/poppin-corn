@@ -1,0 +1,5 @@
+@use '../utilities/mixins' as *;
+
+footer {
+    @include flex-column($justify-content: center, $align-items: center);
+}
