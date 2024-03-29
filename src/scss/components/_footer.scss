@@ -73,9 +73,9 @@ footer {
             @include flex-row(center, flex-start, 4rem);
             padding: 0;
         }
-    }
 
-    hr {
-        width: 600px;
+        hr {
+            width: 600px;
+        }
     }
 }
