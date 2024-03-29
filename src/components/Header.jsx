@@ -1,12 +1,14 @@
-import React from 'react';
+// import { scrollToTop } from '../globals/utilityFunctions';
 
-const AboutPage = () => {
+import Nav from './Nav';
+
+const Header = () => {
+
   return (
-    <div>
-      <h1>About Page</h1>
-      <p>This is the about page content.</p>
-    </div>
-  );
-};
+    <header>
+      <Nav />
+    </header>
+  )
+}
 
-export default AboutPage;
+export default Header;
