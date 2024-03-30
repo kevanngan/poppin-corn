@@ -3,7 +3,7 @@
 @use '../utilities/functions' as*;
 
 header {
-    @include flex-row(space-between, center, $padding);
+    @include flex-row(flex-end, center, $padding);
     position: fixed;
     background-color: $secondary-colour;
     width: 100%;

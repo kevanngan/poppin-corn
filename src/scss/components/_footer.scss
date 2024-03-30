@@ -23,7 +23,12 @@ footer {
 
             svg {
                 font-size: 1.5rem;
-                color: $accent-colour;
+                color: $text-colour;
+                transition: $link-hover-animation-time;
+
+                &:hover {
+                    color: $accent-shade;
+                }
             }
         
         }
@@ -34,6 +39,11 @@ footer {
             a {
                 color: $text-colour;
                 text-decoration: none;
+                transition: $link-hover-animation-time;
+
+                &:hover {
+                    color: $accent-shade;
+                }
             }
 
             .footerNav {
