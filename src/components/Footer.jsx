@@ -36,7 +36,7 @@ const Footer = () => {
                 </div>
             </div>
             <hr />
-            <p className="footerCopyright">{new Date().getFullYear()} Poppin' Corn. All rights reserved.</p>
+            <p className="footerCopyright">@{new Date().getFullYear()} Poppin' Corn</p>
         </footer>
     )
 }
