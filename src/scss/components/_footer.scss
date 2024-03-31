@@ -5,7 +5,7 @@ footer {
     @include flex-column($justify-content: center, $align-items: center);
     background-color: $secondary-colour;
     padding: 1rem;
-    color: $text-color;
+    color: $text-colour;
     font-size: 1rem;
     font-weight: 300;
 
@@ -23,7 +23,12 @@ footer {
 
             svg {
                 font-size: 1.5rem;
-                color: $accent-colour;
+                color: $text-colour;
+                transition: $link-hover-animation-time;
+
+                &:hover {
+                    color: $accent-shade;
+                }
             }
         
         }
@@ -32,8 +37,13 @@ footer {
             @include flex-row($gap: 3rem);
 
             a {
-                color: $text-color;
+                color: $text-colour;
                 text-decoration: none;
+                transition: $link-hover-animation-time;
+
+                &:hover {
+                    color: $accent-shade;
+                }
             }
 
             .footerNav {
@@ -73,9 +83,9 @@ footer {
             @include flex-row(center, flex-start, 4rem);
             padding: 0;
         }
-    }
 
-    hr {
-        width: 600px;
+        hr {
+            width: 600px;
+        }
     }
 }

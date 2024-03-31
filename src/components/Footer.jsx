@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebookSquare, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
@@ -37,7 +36,7 @@ const Footer = () => {
                 </div>
             </div>
             <hr />
-            <p className="footerCopyright">{new Date().getFullYear()} Poppin' Corn. All rights reserved.</p>
+            <p className="footerCopyright">@{new Date().getFullYear()} Poppin' Corn</p>
         </footer>
     )
 }
