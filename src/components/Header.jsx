@@ -8,6 +8,7 @@ import Nav from './Nav';
 
 const Header = () => {
 
+  // Display navigation 
   const [showNav, setShowNav] = useState(false);
 
   const toggleNav = () => {
