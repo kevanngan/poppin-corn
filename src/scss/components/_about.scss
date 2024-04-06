@@ -25,10 +25,21 @@
         h3 {
             margin-top: 1.5rem;
             font-weight: 500;
+            color: $accent-colour;
         }
         p {
             margin: 1rem 0;
             font-weight: 300;
+        }
+
+        .tmdbAttribution {
+            @include flex-column(center, center, 0);
+            margin: auto;
+            padding: 1rem 0 3rem;
+    
+            img {
+                width: 250px;
+            }
         }
     }
 }
