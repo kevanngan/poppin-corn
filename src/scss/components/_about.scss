@@ -1,0 +1,54 @@
+@use '../base/variables' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/functions' as *;
+
+.about {
+    @include flex-column(center, center, 0);
+
+    .about-wrapper {
+        @include flex-column(center, flex-start, 0);
+        margin: 0 10px;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100%;
+        }
+
+        h2{
+            padding: 8rem 0 1rem;
+            text-align: center;
+            display: block;
+            margin: auto;
+            font-weight: 700;
+        }
+        h3 {
+            margin-top: 1.5rem;
+            font-weight: 500;
+            color: $accent-colour;
+        }
+        p {
+            margin: 1rem 0;
+            font-weight: 300;
+        }
+
+        .tmdbAttribution {
+            @include flex-column(center, center, 0);
+            margin: auto;
+            padding: 1rem 0 3rem;
+    
+            img {
+                width: 250px;
+            }
+        }
+    }
+
+// Tablet and Desktop Styling
+
+    @include mq($tablet-width) {
+        .about-wrapper {
+            max-width: 75rem;
+            padding: 0 10rem;
+        }
+    }
+}

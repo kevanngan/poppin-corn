@@ -5,7 +5,10 @@
 
 // Components imports
 @use './components/header';
+@use './components/body';
 @use './components/footer';
+
+@use './components/about';
 
 @use './components/hamburgerMenu';
 @use './components/nav';
