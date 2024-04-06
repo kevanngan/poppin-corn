@@ -16,8 +16,8 @@
         }
 
         h2{
-            padding: 3rem 0 1rem;
-            padding-bottom: 1rem;
+            padding: 8rem 0 1rem;
+            text-align: center;
             display: block;
             margin: auto;
             font-weight: 700;
@@ -40,6 +40,15 @@
             img {
                 width: 250px;
             }
+        }
+    }
+
+// Tablet Styling
+
+    @include mq($tablet-width) {
+        .about-wrapper {
+            max-width: 75rem;
+            padding: 0 10rem;
         }
     }
 }
