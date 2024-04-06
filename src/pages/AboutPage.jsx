@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { appTitle } from '../globals/globalVariables';
 
+import tmdbAttributionLogo from '../assets/images/tmdb-attribute-logo.svg';
 
 const AboutPage = () => {
 
@@ -21,7 +22,7 @@ const AboutPage = () => {
         </div>
 
         <div className="tmdbAttribution">
-          <img src="src" alt="" />
+          <img src={tmdbAttributionLogo} alt="TMDB Logo" />
           <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
         </div>
       </section>
