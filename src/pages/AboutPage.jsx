@@ -11,7 +11,7 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <main>
+    <main className="about">
       <section className="about-wrapper">
         <div className="about-content">
           <h2>ABOUT</h2>
