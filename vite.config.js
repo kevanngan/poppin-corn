@@ -7,9 +7,9 @@ import react from '@vitejs/plugin-react'
 // })
 
 export default defineConfig({
-  base: '/poppincorn/',
+  base: '/poppincorn',
   build: {
     ourDir: 'poppincorn'
   },
   plugins: [react()]
-})
+});
