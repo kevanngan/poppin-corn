@@ -4,6 +4,18 @@ const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'instant' });
 };
 
+const parseVideos = (videos) => {  
+    // The results contain an array of video objects
+    videos = videos.results;
+    // Get only the trailers
+    let trailerVideos = videos.filter(video => video.type === 'Trailer');
+    // If there are more than 1 trailers, get the last one (which is the offical trailer)
+    let trailerVideo = (trailerVideos.length > 0) 
+                            ? trailerVideos[trailerVideos.length - 1].key
+                            : null;
+    return trailerVideo;
+}
+
 const isInMyList = (myList, id) => {
     if (myList.length === 0) return false;
 
@@ -30,6 +42,7 @@ const createMovieObject = (movie) => {
 
 export {
     scrollToTop,
+    parseVideos,
     isInMyList,
     parseDate,
     createMovieObject,
