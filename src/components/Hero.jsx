@@ -1,12 +1,19 @@
-import React from 'react';
+import { IMAGE_PATH_ENDPOINT } from "../globals/globalVariables";
 
-const AboutPage = () => {
-  return (
-    <div>
-      <h1>About Page</h1>
-      <p>This is the about page content.</p>
-    </div>
-  );
-};
+const Hero = ({ movie }) => {
 
-export default AboutPage;
+    return (
+        <div className="heroContainer">
+            <div className="heroImageContainer">
+                {movie.backdrop_path && (<img className="heroImage" src={`${IMAGE_PATH_ENDPOINT}/w1280${movie.backdrop_path}`} alt={movie.title} />)}
+            </div>
+
+            <div className="heroTextContainer">
+                <h3>NOW PLAYING:</h3>
+                <h1>{movie.title}</h1>
+            </div>
+        </div>
+    )
+}
+
+export default Hero;
