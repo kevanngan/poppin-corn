@@ -8,9 +8,7 @@ import { parseVideos, createMovieObject, isInMyList } from "../globals/utilityFu
 import AddToListBtn from "./AddToListBtn";
 
 const Hero = ({ movie, myList }) => {
-    // State for storing the trailer video ID
     const [trailer, setTrailer] = useState(null);
-    // Custom hook for handling "My List" functionality
     const { handleMyListClick } = useMyListHandler();
 
     // Fetch trailer video when component mounts or movie prop changes
@@ -19,13 +17,9 @@ const Hero = ({ movie, myList }) => {
             try {
                 // Construct URL to fetch videos for the movie
                 const videosLink = `https://api.themoviedb.org/3/movie/${movie.id}/videos`;
-                // Fetch videos from the API
                 const response = await fetch(videosLink, REQUEST_OPTIONS);
-                // Parse the response to JSON format
                 const videos = await response.json();
-                // Extract trailer video ID from the response
                 const trailerVideo = parseVideos(videos);
-                // Set the trailer video ID in the state
                 setTrailer(trailerVideo);
             } catch (error) {
                 // Log any errors that occur during fetching
