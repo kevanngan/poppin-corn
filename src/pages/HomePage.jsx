@@ -6,6 +6,7 @@ import {
     NOW_PLAYING_ENDPOINT,
 } from "../globals/globalVariables";
 import Hero from "../components/Hero";
+import MovieTabs from "../components/MovieTabs";
 
 
 const HomePage = () => {
@@ -32,6 +33,8 @@ const HomePage = () => {
     return (
         <main>
             {heroMovie && <Hero movie={heroMovie} myList={myList}/>} 
+
+            <MovieTabs myList={myList}/>
         </main>
     )
 }
