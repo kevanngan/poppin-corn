@@ -1,6 +1,11 @@
-import { useEffect, useState, useRef, useMemo } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { API_KEY, POPULAR_ENDPOINT, NOW_PLAYING_ENDPOINT, TOP_RATED_ENDPOINT, UPCOMING_ENDPOINT } from '../globals/globalVariables';
+import { API_KEY, 
+         POPULAR_ENDPOINT, 
+         NOW_PLAYING_ENDPOINT, 
+         TOP_RATED_ENDPOINT, 
+         UPCOMING_ENDPOINT 
+} from '../globals/globalVariables';
 import { isInMyList, createMovieObject } from '../globals/utilityFunctions';
 import MovieCard from './MovieCard';
 
@@ -25,6 +30,12 @@ function MovieTabs({ myList }) {
         now_playing: NOW_PLAYING_ENDPOINT,
         top_rated: TOP_RATED_ENDPOINT,
         upcoming: UPCOMING_ENDPOINT,
+    };
+
+    // called when tabs changed to update url
+    const changeTab = (newTab) => {
+        setCurrentTab(newTab);
+        navigate(`/${newTab}`); // Change the URL to the new tab
     };
 
     // Effect to set tab based on URL and scroll to tab from external page
@@ -105,7 +116,7 @@ function MovieTabs({ myList }) {
                                 key={tab}
                                 ref={element => (tabsRefs.current[tab] = element)}
                                 className={isActive(tab) ? 'active' : ''}
-                                onClick={() => setCurrentTab(tab)}
+                                onClick={() => changeTab(tab)}
                             >
                                 {tab.replace('_', ' ').toUpperCase()}
                             </button>
