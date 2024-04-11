@@ -27,25 +27,15 @@ function MovieTabs({ myList }) {
         upcoming: UPCOMING_ENDPOINT,
     };
 
-    // Debounce tab change handler to avoid frequent API requests
-    const debouncedSetCurrentTab = useMemo(() => {
-        const debounce = (func, delay) => {
-            let timeoutId;
-            return function (...args) {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(() => func.apply(this, args), delay);
-            };
-        };
-        return debounce(setCurrentTab, 300);
-    }, []);
-
     // Effect to set tab based on URL and scroll to tab from external page
     useEffect(() => {
         if (tab && tabs[tab]) {
-            debouncedSetCurrentTab(tab); // Use debounced version to set current tab
+            setCurrentTab(tab);
         } else {
-            navigate('/'); // Redirect to home page if URL param is invalid
+            navigate('/');
+            return;
         }
+        // Delayed scroll to account for dynamic content loading
         setTimeout(() => {
             if (tabContentRef.current) {
                 const position = tabContentRef.current.getBoundingClientRect().top + window.pageYOffset;
@@ -53,7 +43,8 @@ function MovieTabs({ myList }) {
                 window.scrollTo({ top: position - offset, behavior: 'smooth' });
             }
         }, 100);
-    }, [tab, debouncedSetCurrentTab, navigate]);
+    }, [tab, currentTab, navigate]);
+
 
     // Effect to fetch and update movie data based on current tab and page number
     useEffect(() => {
