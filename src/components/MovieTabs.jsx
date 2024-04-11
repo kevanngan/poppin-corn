@@ -60,14 +60,25 @@ function MovieTabs({ myList }) {
         fetchMovies();
     }, [currentTab, currentPage]);
 
-    // useEffect to change page back to 1 on tab switch
-    useEffect (() => {
+    // useEffect to reset the page number to 1 when switching tabs
+    useEffect(() => {
         // Reset movies and page number when changing tabs
         setMovies([]);
         setCurrentPage(1);
         setDisplayCount(12);
     }, [currentTab]);
-    
+
+    // useEffect to scroll the active tab into view when it's selected
+    useEffect(() => {
+        const activeTabElement = tabsRefs.current[currentTab];
+        if (activeTabElement) {
+            activeTabElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest', // vertical align
+                inline: 'center' // horizontal align
+            });
+        }
+    }, [currentTab]);
 }
 
 export default MovieTabs;
