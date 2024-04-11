@@ -1,13 +1,42 @@
+import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
+import { 
+    appTitle,
+    REQUEST_OPTIONS,
+    NOW_PLAYING_ENDPOINT,
+} from "../globals/globalVariables";
+import Hero from "../components/Hero";
+import MovieTabs from "../components/MovieTabs";
 
 
 const HomePage = () => {
 
-   return (
-    <main>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti eum earum laudantium adipisci ducimus hic, ipsum nostrum esse quas eius, omnis dolorum possimus illo quisquam, aperiam ea fuga. Fugit, perferendis nesciunt quis sequi fugiat molestiae temporibus repellat ab, veniam aut quod eligendi eaque? Suscipit rerum dicta quidem hic quod eaque quibusdam nostrum molestias dolor dolorem magni, asperiores dignissimos tenetur provident in. Aliquam, assumenda fuga! Tempora nisi nihil quod dolorem deleniti, ducimus quia ratione eius. Totam doloremque velit unde amet eveniet in veritatis perferendis, libero aperiam repellendus maiores assumenda consectetur molestias quas! Pariatur mollitia voluptas praesentium in harum? Fugiat amet deleniti quibusdam aliquid? Temporibus modi possimus, ad numquam quod voluptate nostrum sed ducimus adipisci earum, ullam voluptatem tempore eum, saepe error! Veritatis explicabo nesciunt neque, eaque aliquam dicta. Facilis animi rerum esse voluptatem? Culpa nam sapiente praesentium ipsam aspernatur ipsa distinctio vero nostrum quidem excepturi, est, quod recusandae commodi tempora hic, repudiandae veniam provident. Doloribus repellat possimus excepturi sequi maiores deserunt nostrum quibusdam reprehenderit, distinctio saepe deleniti eligendi odit illo veniam, corrupti, ducimus placeat? Nesciunt quod sapiente est nam minima culpa delectus accusamus, inventore iure beatae blanditiis exercitationem! Possimus eligendi animi ipsum iusto harum dolores nemo! Tempora soluta voluptates incidunt. Provident, esse possimus. Debitis eligendi non animi velit corporis dolore et, expedita delectus minima. Adipisci iusto nemo nisi voluptas ab dolor hic ipsam consectetur, labore laboriosam, repellat non, accusamus rerum repudiandae quia officia distinctio aperiam facilis laudantium blanditiis saepe nam. Maiores, accusantium. Numquam nemo rerum dolorem aliquam sit nulla, provident hic voluptatibus neque quo! Pariatur fuga ipsa sed modi porro facere reprehenderit consequuntur, numquam itaque architecto veniam quia vel ratione exercitationem natus perspiciatis optio animi repudiandae! Perspiciatis mollitia voluptatibus temporibus suscipit veritatis voluptatum soluta delectus, quidem, esse corporis ratione unde repellendus explicabo neque rerum ex in eligendi voluptate dolor similique. Officia.
-    </main>
-   )
+    const [heroMovie, setHeroMovie] = useState(null);
 
+    const myList = useSelector((state) => state.myList.items);
+
+    useEffect(() => {
+        document.title = `${appTitle} - Home`;
+    }, []);
+
+    useEffect(() => {
+        const fetchMovies = async() => {
+            const response = await fetch(NOW_PLAYING_ENDPOINT, REQUEST_OPTIONS);
+            let data = await response.json();
+            setHeroMovie(data.results[0]);
+        }
+
+        fetchMovies();
+
+    }, []);
+
+    return (
+        <main>
+            {heroMovie && <Hero movie={heroMovie} myList={myList}/>} 
+
+            <MovieTabs myList={myList}/>
+        </main>
+    )
 }
 
 export default HomePage;
