@@ -1,0 +1,142 @@
+@use "../base/variables" as *;
+@use "../utilities/mixins" as *;
+@use "../utilities/functions" as *;
+
+// -----------------------------------------------------------------------
+// Mobile and Universal Styling
+// -----------------------------------------------------------------------
+.tabs-container {
+    display: flex;
+    justify-content: center;
+}
+
+.tabs {
+    // @include flex-row(flex-start, center, em(50));
+    @include flex-row(flex-start, stretch, rem(50));
+    padding: 3rem 2rem;
+    position: relative;
+
+    // horizontal overflow scrolling styling
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    width: 90vw;
+    max-width: 100%;
+    scrollbar-width: none; // hide scrollbar in firefox
+    -ms-overflow-style: none; // hide scrollbar in ie and edge
+
+    @include mq(rem(650)) {
+        width: max-content;
+    }
+
+    &::-webkit-scrollbar {
+        display: none; // hide scrollbar in WebKit browsers like chrome and Safari
+    }
+
+    &:after {
+        // gray bar
+        content: "";
+        position: absolute;
+        bottom: 2em;
+        width: rem(498);
+        height: rem(3);
+        background-color: rgb(212, 212, 212);
+        z-index: 1;
+    }
+
+    button {
+        background: none;
+        border: none;
+        font-size: rem(16);
+        font-family: $font;
+        cursor: pointer;
+        position: relative;
+        font-weight: 400;
+        transition: $link-hover-animation-time;
+        color: $text-colour;
+
+        &:hover,
+        &:focus {
+            color: $accent-colour;
+        }
+    }
+
+    .active {
+        color: $accent-colour;
+        font-weight: 500;
+
+        &:after {
+            // bar (active tab)
+            content: "";
+            position: absolute;
+            bottom: -(rem(16));
+            left: 0;
+            width: 100%;
+            height: rem(3);
+            background-color: $accent-shade;
+            cursor: auto;
+            z-index: 2;
+        }
+    }
+}
+
+.tab-content {
+    @include flex-row(center, center, em(20));
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 1em em(10);
+}
+
+.see-more-btn {
+    @include flex-row(center, center, 0);
+    padding: em(10) em(20);
+    margin: em(30) auto em(35);
+    background-color: $secondary-colour;
+    color: $text-colour;
+    border: none;
+    border-radius: rem(12);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: $link-hover-animation-time;
+
+    &:hover,
+    &:focus {
+        background-color: $secondary-colour;
+        color: $accent-shade;
+        text-decoration: none;
+    }
+}
+
+// -----------------------------------------------------------------------
+// Tablet+ Styling
+// -----------------------------------------------------------------------
+
+@include mq($tablet-width) {
+    .tabs {
+        button {
+            font-size: rem(20);
+        }
+
+        &:after {
+            width: rem(585);
+        }
+    }
+
+    .tab-content {
+        @include flex-row(center, center, em(20));
+        flex-wrap: wrap;
+        max-width: em(800);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+// -----------------------------------------------------------------------
+// Desktop+ Styling
+// -----------------------------------------------------------------------
+@include mq($desktop-large-width) {
+    .tab-content {
+        max-width: em(1000);
+    }
+}
