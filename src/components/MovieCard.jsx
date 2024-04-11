@@ -10,6 +10,7 @@ function MovieCard({ movie, isInMyList}) {
 
     return (
         <div className="movieCard" key={movie.id}>
+            {movie.posterPath && (<img src={movie.posterPath} alt={`Poster for ${movie.title}`} />)}
             <div className="overlay">
             <Rating rating={movie.voteAverage} />
                 <p>{movie.releaseDate}</p>
