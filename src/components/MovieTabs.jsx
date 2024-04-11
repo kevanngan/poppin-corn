@@ -38,6 +38,27 @@ function MovieTabs({ myList }) {
             }
         }, 100); // Adjust delay as necessary
     }, [tab, currentTab, navigate]);
+
+    // useEffect to fetch and update movie api data
+    useEffect (() => {
+        const fetchMovies = async () => {
+            const endpoint =`${tabs[currentTab]}&api_key=${API_KEY}&page=${currentPage}`;
+            try {
+                const response = await fetch(endpoint);
+                const data = await response.json();
+                const transformedMovies = data.results.map(createMovieObject);
+                setMovies(prevMovies => {
+                    const allMovies = [...prevMovies, ...transformedMovies];
+
+                    const uniqueMovies = allMovies.filter((movies, index, self) => index === self.findIndex((m) => m.id === movies.id));
+                    return uniqueMovies;
+                });
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchMovies();
+    }, [currentTab, currentPage]);
 }
 
 export default MovieTabs;
