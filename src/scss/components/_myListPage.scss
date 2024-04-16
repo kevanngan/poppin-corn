@@ -1,0 +1,41 @@
+@use '../base/variables' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/functions' as *;
+
+
+// -----------------------------------------------------------------------
+// Mobile and Universal Styling
+// -----------------------------------------------------------------------
+.my-list {
+    @include flex-column(flex-start, flex-start, 2rem);
+    margin: 0 auto;
+    width: clamp(280px, 80%, 1200px);
+    padding: 8rem 0;
+
+    min-height: calc(100vh - $footer-height - $mobile-header-height);
+
+    h1 {
+        font-size: rem(24);
+    }
+
+    .movie-list {
+        @include flex-row-wrap(center, center, 1.5rem);
+    }
+}
+
+// -----------------------------------------------------------------------
+// Desktop Styling
+// -----------------------------------------------------------------------
+@include mq($desktop-medium-width) {
+    .my-list {
+        min-height: calc(100vh - $footer-height - $desktop-header-height);
+
+        h1 {
+            font-size: rem(30);
+        }
+
+        .empty-list {
+            font-size: rem(20);
+        }
+    }
+}
