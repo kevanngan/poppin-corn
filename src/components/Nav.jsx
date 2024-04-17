@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import {
-    tabletWidth
+    tabletWidth,
+    API_KEY,
+    SEARCH_ENDPOINT
 } from '../globals/globalVariables';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
