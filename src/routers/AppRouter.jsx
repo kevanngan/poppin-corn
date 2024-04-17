@@ -7,6 +7,7 @@ import AboutPage from "../pages/AboutPage";
 import MyListPage from "../pages/MyListPage";
 import MoviePage from "../pages/MoviePage";
 import ErrorPage from "../pages/ErrorPage";
+import SearchPage from "../pages/SearchPage";
 
 import { poppincorn } from "../globals/globalVariables.js";
 
@@ -22,6 +23,7 @@ const AppRouter = () => {
                     <Route path="/my-list" element={<MyListPage />}></Route>
                     <Route path="/movie/:id" element={<MoviePage />}></Route>
                     <Route path="*" exact element={<ErrorPage />}></Route>
+                    <Route path="/search/:searchTerm" exact element={<SearchPage />}></Route>
                 </Routes>
                 <Footer />
             </div>
