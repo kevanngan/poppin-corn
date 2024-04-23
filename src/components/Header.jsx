@@ -1,31 +1,27 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { scrollToTop } from '../globals/utilityFunctions';
-
 import { tabletWidth } from '../globals/globalVariables';
-
 import HamburgerMenu from './HamburgerMenu';
 import Nav from './Nav';
 
 const Header = () => {
-
-  // Display navigation 
   const [showNav, setShowNav] = useState(false);
 
   const toggleNav = () => {
-    setShowNav(!showNav);
+    setShowNav(prevState => !prevState);
   };
 
-  const isDesktop = (e) => {
+  const handleMediaQueryChange = (e) => {
     if (e.matches) {
       setShowNav(false);
     }
-  }
+  };
 
   useEffect(() => {
-    let mediaQuery = window.matchMedia(`(min-width: ${tabletWidth}px)`);
-    mediaQuery.addEventListener('change', isDesktop);
+    const mediaQuery = window.matchMedia(`(min-width: ${tabletWidth}px)`);
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
 
-    return () => mediaQuery.removeEventListener('change', isDesktop);
+    return () => mediaQuery.removeEventListener('change', handleMediaQueryChange);
   }, []);
 
   return (
@@ -33,7 +29,7 @@ const Header = () => {
       <HamburgerMenu showNav={showNav} toggleNav={toggleNav} />
       <Nav toggleNav={toggleNav} scrollToTop={scrollToTop} />
     </header>
-  )
-}
+  );
+};
 
 export default Header;
