@@ -8,6 +8,7 @@ footer {
     color: $text-colour;
     font-size: 1rem;
     font-weight: 300;
+    height: 28.125rem;
 
     .footerContent {
         @include flex-column(center, center, 1rem);
