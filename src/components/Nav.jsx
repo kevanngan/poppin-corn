@@ -67,53 +67,51 @@ const Nav = ({ toggleNav, scrollToTop }) => {
     }
 
     return (
-        <>
-        <nav className='siteNavigation' onClick={closeNav}>
+        <nav className="siteNavigation" onClick={closeNav}>
             <ul>
-                {/* Nav Links */}
-                <li><NavLink to="/" onClick={scrollToTop}>Home</NavLink></li>
-                <li><NavLink to="/my-list" onClick={scrollToTop}>My List</NavLink></li>
-                <li><NavLink to="/about" onClick={scrollToTop}>About</NavLink></li>
+                {/* Nav links */}
+                <li><NavLink to="/" onClick={scrollToTop}>HOME</NavLink></li>
+                <li><NavLink to="/my-list" onClick={scrollToTop}>MY LIST</NavLink></li>
+                <li><NavLink to="/about" onClick={scrollToTop}>ABOUT</NavLink></li>
+
+                {/* Search input */}
+                <form className="searchInput" onSubmit={handleFormSubmit}>
+                    <div className='searchInputContainer'>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            name="searchInput" 
+                            placeholder='Search...'
+                            value={searchQuery}
+                            onClick={handleSearchClick}
+                            onChange={handleSearchChange}
+                            onBlur={handleSearchBlur}
+                            autoComplete="off"
+                        />
+                        <button type="submit" className="searchSubmit">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
+                    </div>
+
+                    {/* Display search results */}
+                    {searchResults.length > 0 && (
+                        <ul className="searchResults">
+                            {searchResults.slice(0, 5).map(result => (
+                                <li key={result.id}>
+                                    <Link 
+                                        to={`/movie/${result.id}`}
+                                        onClick={resetSearch}
+                                    >
+                                        {result.title} ({result.release_date.slice(0, 4)})
+                                    </Link> 
+                                </li>
+                            ))}
+                            <li><button type="submit" className="searchSubmit">See More</button></li>
+                        </ul>
+                    )}
+                </form>
             </ul>
         </nav>
-
-        {/* Search input */}
-        <form className="searchInput" onSubmit={handleFormSubmit}>
-        <div className='searchInputContainer'>
-            <input 
-                type="text" 
-                id="searchInput" 
-                name="searchInput" 
-                placeholder='Search...'
-                value={searchQuery}
-                onClick={handleSearchClick}
-                onChange={handleSearchChange}
-                onBlur={handleSearchBlur}
-                autoComplete="off"
-            />
-            <button type="submit" className="searchSubmit">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-        </div>
-
-        {/* Display search results */}
-        {searchResults.length > 0 && (
-            <ul className="searchResults">
-                {searchResults.slice(0, 5).map(result => (
-                    <li key={result.id}>
-                        <Link 
-                            to={`/movie/${result.id}`}
-                            onClick={resetSearch}
-                        >
-                            {result.title} ({result.release_date.slice(0, 4)})
-                        </Link> 
-                    </li>
-                ))}
-                <li><button type="submit" className="searchSubmit">See More</button></li>
-            </ul>
-        )}
-    </form>
-    </>
     )
 }
 

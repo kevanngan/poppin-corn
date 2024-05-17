@@ -4,13 +4,16 @@
 
 .siteNavigation {
     @include position-absolute($mobile-header-height, 0);
+
     width: 100%;
     height: 0;
     visibility: hidden;
     overflow: hidden;
+    
     background-color: $secondary-colour;
     border-radius: 0 0 rem(15) rem(15);
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.8);
+
     transition: height 0.5s ease, visibility 0.5s;
 
     .show & {
@@ -31,11 +34,81 @@
         color: $text-colour;
         padding: 1rem;
         transition: color $link-hover-animation-time ease-in-out;
-        text-decoration: none;
     }
 
     li a:hover {
         color: $accent-shade;
+    }
+
+    .searchInputContainer {
+        position: relative;
+        $searchInputHeight: 35;
+
+        @include flex-row($align-items: center);
+
+        input {
+            width: rem(240);
+            height: rem($searchInputHeight);
+            border: 1px solid #ccc;
+            border-radius: calc(rem($searchInputHeight) / 2) 0 0 calc(rem($searchInputHeight) / 2);
+            padding: $padding;
+            background-color: $text-colour;
+            
+        }
+    
+        input:focus {
+            outline: none;
+        }
+    
+        button {
+            cursor: pointer;
+            @include flex-row(center, center);
+            height: rem($searchInputHeight);
+            padding: 12px;
+            font-size: rem(16);
+            border: 1px solid #ccc;
+            border-radius: 0 calc(rem($searchInputHeight) / 2) calc(rem($searchInputHeight) / 2) 0;
+        }
+    }
+
+    .searchResults {
+        @include flex-column(flex-start, flex-start, 0);
+        position: absolute;
+        padding: 2rem 3rem;
+        width: clamp(280px, 80%, 1200px);
+        margin: 0 auto;
+        background-color: $secondary-colour;
+        left: 0;
+        right: 0;
+        height: fit-content;
+        border-radius: 0 0 rem(12) rem(12);
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.8);
+
+        li {
+            border-bottom: 1px solid white;
+            width: 100%;
+        }
+
+        li:last-child {
+            border: none;
+        }
+        
+        a {
+            display: block;
+            font-size: rem(14);
+            padding: $padding 0;
+            width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            color: $text-colour;
+            background: none;
+            border: none;
+            padding: $padding 0;
+        }
     }
 
     @include mq($tablet-width) {
@@ -45,11 +118,23 @@
             position: static;
             top: auto;
             left: auto;
+
             background-color: transparent;
             box-shadow: none;
 
             ul {
                 @include flex-row(flex-end, center, rem(30));
+            }
+
+            .searchInputContainer {
+                input {
+                    width: rem(200);
+                }
+            }
+
+            .searchResults {
+                top: $mobile-header-height;
+                left: auto;
             }
         }
     }
@@ -58,100 +143,7 @@
         ul {
             gap: rem(71);
         }
-    }
 
-    @include mq($desktop-medium-width) {
-        li a,
-        li a:visited {
-            font-size: rem(24);
-        }
-    }
-}
-
-.searchInputContainer {
-    position: relative;
-    $searchInputHeight: 35;
-
-    @include flex-row($align-items: center);
-
-    input {
-        width: rem(240);
-        height: rem($searchInputHeight);
-        border: 1px solid #ccc;
-        border-radius: calc(rem($searchInputHeight) / 2) 0 0 calc(rem($searchInputHeight) / 2);
-        padding: $padding;
-        background-color: $text-colour;
-        
-    }
-
-    input:focus {
-        outline: none;
-    }
-
-    button {
-        cursor: pointer;
-        @include flex-row(center, center);
-        height: rem($searchInputHeight);
-        padding: 12px;
-        font-size: rem(16);
-        border: 1px solid #ccc;
-        border-radius: 0 calc(rem($searchInputHeight) / 2) calc(rem($searchInputHeight) / 2) 0;
-    }
-}
-
-.searchResults {
-    @include flex-column(flex-start, flex-start, 0);
-    position: absolute;
-    padding: 2rem 3rem;
-    width: clamp(280px, 80%, 1200px);
-    margin: 0 auto;
-    background-color: $secondary-colour;
-    left: 0;
-    right: 0;
-    height: fit-content;
-    border-radius: 0 0 rem(12) rem(12);
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.8);
-
-    li {
-        border-bottom: 1px solid white;
-        width: 100%;
-    }
-
-    li:last-child {
-        border: none;
-    }
-    
-    a {
-        display: block;
-        font-size: rem(14);
-        padding: $padding 0;
-        width: 100%;
-    }
-
-    button {
-        cursor: pointer;
-        display: block;
-        margin-left: auto;
-        color: $text-colour;
-        background: none;
-        border: none;
-        padding: $padding 0;
-    }
-
-    @include mq($tablet-width) {
-        .searchInputContainer {
-            input {
-                width: rem(200);
-            }
-        }
-    
-        .searchResults {
-            top: $mobile-header-height;
-            left: auto;
-        }
-    }
-
-    @include mq($desktop-medium-width) {
         .searchInputContainer {
             input {
                 width: rem(200);
@@ -171,6 +163,13 @@
         }
     }
 
+    @include mq($desktop-medium-width) {
+        li a,
+        li a:visited {
+            font-size: rem(24);
+        }
+    }
+
     @include mq($desktop-large-width) {
 
         .searchInputContainer {
@@ -178,5 +177,5 @@
                 width: rem(240);
             }
         }
-    }
+    }  
 }
