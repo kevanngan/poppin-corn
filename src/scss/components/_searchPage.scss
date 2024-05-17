@@ -1,0 +1,80 @@
+@use '../base/variables' as *;
+@use '../utilities/mixins' as *;
+@use '../utilities/functions' as *;
+
+.searchResultSection {
+    @include flex-column(flex-start, flex-start, 0);
+    margin: 0 auto;
+    width: clamp(280px, 80%, 1200px);
+    min-height: calc(100vh - $footer-height - $mobile-header-height);
+    padding: 3rem 0;
+
+    .totalPages {
+        font-size: rem(14);
+        margin-top: $padding;
+    }
+
+    .buttonContainer {
+        @include flex-row(center, center, $padding);
+        margin-top: $padding-double;
+        margin-left: auto;
+        margin-right: auto;
+
+        button {
+            color: $text-colour;
+            background-color: $primary-colour;
+            width: rem(100);
+            padding: $padding-half $padding;
+            border: none;
+            border-radius: rem(6);
+            transition: background-color $link-hover-animation-time ease-in-out;
+        }
+
+        .currentPage {
+            font-size: rem(18);
+            margin: 0;
+            width: 20%;
+            text-align: center
+        }
+    }
+
+    .movieContainer {
+        @include flex-row-wrap(center, center, rem(24));
+        margin-top: $padding-double;
+    }
+
+
+
+    @include mq($desktop-small-width) {
+        .buttonContainer {
+
+            button:hover {
+                background-color: $accent-shade;
+            }
+        }
+    }
+
+    @include mq($desktop-medium-width) {
+        min-height: calc(100vh - $footer-height - $desktop-header-height);
+
+        h1 {
+            font-size: rem(30);
+        }
+
+        .totalPages {
+            font-size: rem(16);
+        }
+
+        .buttonContainer {
+            button {
+                font-size: rem(16);
+                width: rem(125);
+                padding: 0.5rem 0.75rem;
+            }
+
+            .currentPage {
+                font-size: rem(20);
+            }
+        }
+    }
+}
