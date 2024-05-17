@@ -1,4 +1,4 @@
-const appTitle = "Poppin'Corn";
+const appTitle = "Poppin' Corn";
 
 // Media query breakpoints
 const tabletWidth = 768;
