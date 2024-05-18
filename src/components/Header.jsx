@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { scrollToTop } from '../globals/utilityFunctions';
 import { tabletWidth } from '../globals/globalVariables';
 import HamburgerMenu from './HamburgerMenu';
 import Nav from './Nav';
+import logo from '../assets/logo/poppin-corn-logo-250px.svg';
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -26,6 +28,11 @@ const Header = () => {
 
   return (
     <header className={showNav ? 'show' : ''}>
+      <div className="logo">
+        <NavLink to="/" onClick={scrollToTop}>
+          <img src={logo} alt="Poppin' Corn logo" />
+        </NavLink>
+      </div>
       <HamburgerMenu showNav={showNav} toggleNav={toggleNav} />
       <Nav toggleNav={toggleNav} scrollToTop={scrollToTop} />
     </header>
